@@ -13,6 +13,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <!-- ===========================
+     SwineCare Favicon Setup
+    =========================== -->
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon-128x128.png">
+    <link rel="shortcut icon" href="favicon-32x32.png">
+    <meta name="theme-color" content="#E91E63">
+    <meta name="application-name" content="SwineCare">
+    <meta name="apple-mobile-web-app-title" content="SwineCare">
+
     <style>
         * {
             margin: 0;
@@ -811,210 +823,115 @@
         .items-center { align-items: center; }
         .justify-between { justify-content: space-between; }
 
-        /* Mobile View Enhancements */
-@media (max-width: 480px) {
-    body {
-        font-size: 14px;
-        padding: 0;
-        overflow-x: hidden;
-    }
+        /* =====================================
+   FINAL RESPONSIVE FIX FOR MOBILE VIEWS
+   ===================================== */
+@media (max-width: 768px) {
+  html, body {
+    width: 100%;
+    overflow-x: hidden;
+  }
 
-    .auth-card {
-        width: 90%;
-        padding: 1.5rem;
-        margin: 1rem auto;
-    }
+  .main-content {
+    width: 100%;
+    overflow-x: hidden;
+    margin-left: 0 !important;
+  }
 
-    .auth-logo {
-        width: 60px;
-        height: 60px;
-        font-size: 1.5rem;
-    }
+  /* Make all page sections fluid */
+  .page-content {
+    width: 100%;
+    overflow-x: hidden;
+  }
 
-    .sidebar {
-        width: 220px;
-        padding: 1rem 0;
-    }
+  /* Pig Management */
+  .pig-form, .pig-list {
+    width: 100%;
+    overflow-x: auto;
+    border-radius: 12px;
+  }
 
-    .main-content {
-        padding: 1rem;
-    }
+  .pig-table {
+    width: 100%;
+    min-width: 600px;
+    display: block;
+  }
 
-    .top-bar {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.5rem;
-        padding: 1rem;
-    }
-
-    .user-profile {
-        width: 100%;
-        justify-content: space-between;
-    }
-
-    .dashboard-grid,
-    .controls-section,
-    .form-row {
-        grid-template-columns: 1fr;
-    }
-
-    .control-card,
-    .chart-container,
-    .camera-section,
-    .pig-form,
-    .pig-list {
-        padding: 1rem;
-    }
-
-    .filter-select,
-    .schedule-input,
-    .form-input {
-        font-size: 0.9rem;
-        padding: 0.6rem;
-    }
-
-    .btn,
-    .btn-primary,
-    .btn-secondary {
-        font-size: 0.9rem;
-        padding: 0.8rem 1rem;
-    }
-
-    .camera-view {
-        height: 200px;
-    }
-
-    .page-title {
-        font-size: 1.5rem;
-    }
-
-    .nav-link {
-        padding: 0.8rem 1rem;
-        font-size: 0.9rem;
-    }
-
-    /* Prevent overflow of tables */
-    .pig-list {
-        overflow-x: auto;
-    }
-
-    .pig-table {
-        width: 600px;
-    }
+/* Data & Statistics */
+.chart-container {
+  width: 100%;
+  overflow-x: auto;
 }
 
-/* =========================
-   Pig Management - Mobile
-========================= */
-@media (max-width: 480px) {
-    .pig-form {
-        padding: 1rem;
-    }
-
-    .pig-form .form-row {
-        grid-template-columns: 1fr;
-        gap: 0.75rem;
-    }
-
-    .pig-list {
-        margin-top: 1rem;
-        overflow-x: auto;
-        border-radius: 12px;
-    }
-
-    .pig-table {
-        width: 650px;
-        font-size: 0.9rem;
-    }
-
-    .btn-sell {
-        padding: 0.6rem 0.8rem;
-        font-size: 0.8rem;
-    }
-
-    .status-badge {
-        padding: 0.2rem 0.6rem;
-        font-size: 0.7rem;
-    }
+canvas, .chart-canvas {
+  width: 100% !important;
+  height: 260px !important; /* 🔧 Fixed height for mobile */
+  max-height: 260px;
+  display: block;
 }
 
-/* =========================
-   Data Statistics - Mobile
-========================= */
-@media (max-width: 480px) {
-    .chart-container {
-        padding: 1rem;
-        border-radius: 12px;
-    }
-
-    .chart-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.5rem;
-    }
-
-    .chart-filters {
-        width: 100%;
-        flex-wrap: wrap;
-        justify-content: space-between;
-    }
-
-    .filter-select {
-        width: 48%;
-        font-size: 0.9rem;
-        margin-bottom: 0.5rem;
-    }
-
-    .chart-canvas {
-        height: 250px !important;
-    }
+.chart-header, .chart-filters {
+  flex-wrap: wrap;
 }
 
-/* =========================
-   Reports Page - Mobile
-========================= */
-@media (max-width: 480px) {
-    .report-section {
-        background: white;
-        padding: 1rem;
-        border-radius: 12px;
-        box-shadow: 0 6px 16px var(--shadow);
-        margin-bottom: 1.5rem;
-    }
+  /* Reports Page */
+  .report-section {
+    width: 100%;
+    overflow-x: auto;
+    border-radius: 12px;
+  }
 
-    .report-table {
-        width: 600px;
-        overflow-x: auto;
-        font-size: 0.9rem;
-    }
+  .report-table {
+    width: 100%;
+    min-width: 650px;
+    display: block;
+  }
 
-    .report-table th, 
-    .report-table td {
-        padding: 0.8rem;
-    }
+  /* Prevent large padding from forcing overflow */
+  .top-bar, .camera-section, .control-card, .chart-container, .pig-form {
+    padding: 1rem;
+  }
 
-    .report-filters {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.5rem;
-        margin-bottom: 1rem;
-    }
+  /* Sidebar - mobile behavior only */
+  .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 220px;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+    z-index: 1000;
+  }
 
-    .report-filters select,
-    .report-filters input {
-        width: 48%;
-        padding: 0.6rem;
-        font-size: 0.9rem;
-        border: 2px solid var(--light-pink);
-        border-radius: 8px;
-    }
+  .sidebar.show {
+    transform: translateX(0);
+  }
 
-    .btn-generate {
-        width: 100%;
-        padding: 0.8rem;
-        font-size: 0.9rem;
-        margin-top: 0.5rem;
-    }
+  /* Compact buttons & inputs */
+  .btn, .filter-select, .form-input, .schedule-input {
+    font-size: 0.9rem;
+    padding: 0.6rem 0.8rem;
+  }
+}
+
+/* =====================================
+   DESKTOP VIEW RESTORATION
+   ===================================== */
+@media (min-width: 769px) {
+  .sidebar {
+    transform: none !important;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 280px;
+    height: 100vh;
+    z-index: 1000;
+  }
+
+  .main-content {
+    margin-left: 280px !important;
+  }
 }
     </style>
 </head>
