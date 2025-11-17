@@ -1593,14 +1593,14 @@
 		//--------------------------------------------------
 		//an karan espCam link naka websocket la ine tas an image format naka JPEG. Dre mismo video an gin se send han esp mga JPEG files la
 		const CAMERA_URLS = {
-		  behavior: "http://cam_stream:81/stream" // ESP32-CAM
+		  behavior: "https://cam_stream:81/stream" // ESP32-CAM
 		};
 		//--------------------------------------------------
 		
 		//--------------------------------------------------------------
 		//naka bulag ine na site pero karan usa la ine na ESP32 (dre an espCam) kay na race condition pag ig timpo ha usa na webSocket link
-		const THERMAL_WS_URL = "ws://heatmap/thermal";
-		const CONTROL_WS_URL = "ws://heatmap/control";
+		const THERMAL_WS_URL = "wss://heatmap/thermal";
+		const CONTROL_WS_URL = "wss://heatmap/control";
 		//ine na var na prevent ine race condition. gin guard niya an CONTROL_WS_URL para bisan naka "connecting" pala dre na loop request
 		let controlConnecting = false;
 		//--------------------------------------------------------------
