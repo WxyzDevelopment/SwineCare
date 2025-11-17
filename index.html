@@ -13,18 +13,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-
-    <!-- ===========================
-     SwineCare Favicon Setup
-    =========================== -->
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="favicon-128x128.png">
-    <link rel="shortcut icon" href="favicon-32x32.png">
-    <meta name="theme-color" content="#E91E63">
-    <meta name="application-name" content="SwineCare">
-    <meta name="apple-mobile-web-app-title" content="SwineCare">
-
     <style>
         * {
             margin: 0;
@@ -599,11 +587,27 @@
             border-radius: 8px;
             cursor: pointer;
             transition: all 0.3s ease;
+            margin-right: 0.5rem;
         }
 
         .btn-sell:hover {
             transform: translateY(-1px);
             box-shadow: 0 4px 8px rgba(255, 152, 0, 0.2);
+        }
+
+        .btn-delete {
+            background: var(--error-red);
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-delete:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(244, 67, 54, 0.3);
         }
 
         /* Charts */
@@ -823,116 +827,103 @@
         .items-center { align-items: center; }
         .justify-between { justify-content: space-between; }
 
-        /* =====================================
-   FINAL RESPONSIVE FIX FOR MOBILE VIEWS
-   ===================================== */
-@media (max-width: 768px) {
-  html, body {
-    width: 100%;
-    overflow-x: hidden;
-  }
+        @media (max-width: 768px) {
+            html, body {
+                width: 100%;
+                overflow-x: hidden;
+            }
 
-  .main-content {
-    width: 100%;
-    overflow-x: hidden;
-    margin-left: 0 !important;
-  }
+            .main-content {
+                width: 100%;
+                overflow-x: hidden;
+                margin-left: 0 !important;
+            }
 
-  /* Make all page sections fluid */
-  .page-content {
-    width: 100%;
-    overflow-x: hidden;
-  }
+            .page-content {
+                width: 100%;
+                overflow-x: hidden;
+            }
 
-  /* Pig Management */
-  .pig-form, .pig-list {
-    width: 100%;
-    overflow-x: auto;
-    border-radius: 12px;
-  }
+            .pig-form, .pig-list {
+                width: 100%;
+                overflow-x: auto;
+                border-radius: 12px;
+            }
 
-  .pig-table {
-    width: 100%;
-    min-width: 600px;
-    display: block;
-  }
+            .pig-table {
+                width: 100%;
+                min-width: 600px;
+                display: block;
+            }
 
-/* Data & Statistics */
-.chart-container {
-  width: 100%;
-  overflow-x: auto;
-}
+            .chart-container {
+                width: 100%;
+                overflow-x: auto;
+            }
 
-canvas, .chart-canvas {
-  width: 100% !important;
-  height: 260px !important; /* 🔧 Fixed height for mobile */
-  max-height: 260px;
-  display: block;
-}
+            canvas, .chart-canvas {
+                width: 100% !important;
+                height: 260px !important;
+                max-height: 260px;
+                display: block;
+            }
 
-.chart-header, .chart-filters {
-  flex-wrap: wrap;
-}
+            .chart-header, .chart-filters {
+                flex-wrap: wrap;
+            }
 
-  /* Reports Page */
-  .report-section {
-    width: 100%;
-    overflow-x: auto;
-    border-radius: 12px;
-  }
+            .report-section {
+                width: 100%;
+                overflow-x: auto;
+                border-radius: 12px;
+            }
 
-  .report-table {
-    width: 100%;
-    min-width: 650px;
-    display: block;
-  }
+            .report-table {
+                width: 100%;
+                min-width: 650px;
+                display: block;
+            }
 
-  /* Prevent large padding from forcing overflow */
-  .top-bar, .camera-section, .control-card, .chart-container, .pig-form {
-    padding: 1rem;
-  }
+            .top-bar, .camera-section, .control-card, .chart-container, .pig-form {
+                padding: 1rem;
+            }
 
-  /* Sidebar - mobile behavior only */
-  .sidebar {
-    position: fixed;
-    left: 0;
-    top: 0;
-    height: 100vh;
-    width: 220px;
-    transform: translateX(-100%);
-    transition: transform 0.3s ease;
-    z-index: 1000;
-  }
+            .sidebar {
+                position: fixed;
+                left: 0;
+                top: 0;
+                height: 100vh;
+                width: 220px;
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+                z-index: 1000;
+            }
 
-  .sidebar.show {
-    transform: translateX(0);
-  }
+            .sidebar.show {
+                transform: translateX(0);
+            }
 
-  /* Compact buttons & inputs */
-  .btn, .filter-select, .form-input, .schedule-input {
-    font-size: 0.9rem;
-    padding: 0.6rem 0.8rem;
-  }
-}
+            .btn, .filter-select, .form-input, .schedule-input {
+                font-size: 0.9rem;
+                padding: 0.6rem 0.8rem;
+            }
+        }
 
-/* =====================================
-   DESKTOP VIEW RESTORATION
-   ===================================== */
-@media (min-width: 769px) {
-  .sidebar {
-    transform: none !important;
-    position: fixed;
-    left: 0;
-    top: 0;
-    width: 280px;
-    height: 100vh;
-    z-index: 1000;
-  }
+        @media (min-width: 769px) {
+            .sidebar {
+                transform: none !important;
+                position: fixed;
+                left: 0;
+                top: 0;
+                width: 280px;
+                height: 100vh;
+                z-index: 1000;
+            }
 
-  .main-content {
-    margin-left: 280px !important;
-  }
-}
+            .main-content {
+                margin-left: 280px !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1148,26 +1139,15 @@ canvas, .chart-canvas {
 
 				  <div class="camera-view">
 					<div class="camera-placeholder" id="cameraFeed">
-
-					  <!-- Behavior camera -->
 					  <img id="camImg" src=""
 						   alt="Camera Feed"
 						   style="max-width: 100%; border-radius: 8px; display: none;" />
 
-					  <!-- Thermal heatmap -->
 					  <div id="thermalContainer" style="display: none; text-align: center;">
 						<canvas id="canvas" width="320" height="240"
 								style="border-radius: 8px; background: black; max-width: 100%;"></canvas>
-						<!--
-						<div style="margin-top: 0.5rem; color: white; font-size: 0.9rem;">
-						  FPS: <span id="fpsEl">0</span> |
-						  Min: <span id="lastMinEl">-</span> |
-						  Max: <span id="lastMaxEl">-</span>
-						</div>
-						-->
 					  </div>
 
-					  <!-- Placeholder -->
 					  <div id="camPlaceholder" style="text-align: center; color: white;">
 						<i class="fas fa-video" style="font-size: 3rem; margin-bottom: 1rem;"></i>
 						<div>Live Camera Feed - Behavior Monitoring</div>
@@ -1421,6 +1401,24 @@ canvas, .chart-canvas {
         </div>
     </div>
 
+    <!-- Delete Pig Confirmation Modal -->
+    <div id="deletePigModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Delete Pig</h3>
+                <button class="close-btn" onclick="closeDeleteModal()">&times;</button>
+            </div>
+            <div style="margin-bottom: 1.5rem;">
+                <p>Are you sure you want to delete this pig from the system?</p>
+                <p style="color: var(--error-red); margin-top: 0.5rem; font-weight: 600;">This action cannot be undone.</p>
+            </div>
+            <div style="display: flex; gap: 1rem;">
+                <button type="button" class="btn btn-secondary" onclick="closeDeleteModal()">Cancel</button>
+                <button type="button" class="btn-delete" onclick="confirmDelete()">Delete Pig</button>
+            </div>
+        </div>
+    </div>
+
     <!-- Notification Toast -->
     <div id="notificationToast" class="notification">
         <div style="display: flex; align-items: center; gap: 1rem;">
@@ -1447,21 +1445,25 @@ canvas, .chart-canvas {
         const database = firebase.database();
         const firestore = firebase.firestore();
 
+        // Enable Firebase persistence to keep user logged in
+        auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+            .catch((error) => {
+                console.error("Error setting persistence:", error);
+            });
+
         // Global Variables
         let currentUser = null;
         let currentPigToSell = null;
+        let currentPigToDelete = null;
         let charts = {};
         let chartInstances = {};
         let simulationInterval;
-		
-		//sensor var
 		let pig_temp = null;
 		let ambient_temp = null;
 		let ambient_humidity = null;
 
         // Authentication Functions
         function showLogin() {
-            // Destroy charts when switching to login
             destroyAllCharts();
             document.getElementById('loginPage').style.display = 'block';
             document.getElementById('registerPage').style.display = 'none';
@@ -1469,7 +1471,6 @@ canvas, .chart-canvas {
         }
 
         function showRegister() {
-            // Destroy charts when switching to register
             destroyAllCharts();
             document.getElementById('loginPage').style.display = 'none';
             document.getElementById('registerPage').style.display = 'block';
@@ -1539,7 +1540,6 @@ canvas, .chart-canvas {
                 const userCredential = await auth.createUserWithEmailAndPassword(email, password);
                 await userCredential.user.updateProfile({ displayName: name });
                 
-                // Create user profile in Firestore
                 await firestore.collection('users').doc(userCredential.user.uid).set({
                     name: name,
                     email: email,
@@ -1574,23 +1574,19 @@ canvas, .chart-canvas {
             document.getElementById('authContainer').style.display = 'none';
             document.getElementById('appContainer').style.display = 'flex';
             
-            // Update user info
             const displayName = currentUser.displayName || 'Farmer';
             document.getElementById('userName').textContent = displayName;
             document.getElementById('userAvatar').textContent = displayName.charAt(0).toUpperCase();
             
-            // Load initial data
             loadPigs();
             setupRealtimeListeners();
             
-            // Small delay to ensure DOM is ready before initializing charts
             setTimeout(() => {
                 initializeCharts();
             }, 100);
         }
 
         function logout() {
-            // Destroy all charts before logging out
             destroyAllCharts();
             
             auth.signOut();
@@ -1603,19 +1599,15 @@ canvas, .chart-canvas {
 
         // Navigation
         function showPage(pageId) {
-            // Hide all pages
             const pages = document.querySelectorAll('.page-content');
             pages.forEach(page => page.classList.remove('active'));
             
-            // Show selected page
             document.getElementById(pageId + 'Page').classList.add('active');
             
-            // Update navigation
             const navLinks = document.querySelectorAll('.nav-link');
             navLinks.forEach(link => link.classList.remove('active'));
             event.target.classList.add('active');
             
-            // Update page title
             const titles = {
                 'dashboard': 'Dashboard',
                 'pigs': 'Pig Management',
@@ -1635,16 +1627,14 @@ canvas, .chart-canvas {
 
         // IoT Data Simulation
         function startDataSimulation() {
-            // Simulate real-time data updates every 5 seconds
             simulationInterval = setInterval(() => {
-                //updateSensorData();
-				ambient_temp = ambient_temp.toFixed(2);
+                if (ambient_temp) {
+                    ambient_temp = parseFloat(ambient_temp).toFixed(2);
+                }
 				updateSensorData(pig_temp, ambient_humidity, ambient_temp);
                 checkHealthAlerts();
             }, 5000);
             
-            // Initial data load
-            //updateSensorData();
 			updateSensorData(pig_temp, ambient_humidity, ambient_temp);
         }
 
@@ -1653,21 +1643,18 @@ canvas, .chart-canvas {
                 clearInterval(simulationInterval);
             }
         }
-		//---------------------------------inset new code--------------------------------------------------------- 
+
         function updateSensorData(pig_temp = 0, H = 0, ambient_temp = 0) {
             if (!currentUser) return;
 
-            // Simulate sensor data
             const temperature = ambient_temp;
             const humidity = H;
             const pigBodyTemp = pig_temp;
 			
-            // Update UI
             document.getElementById('temperature').innerHTML = `${temperature}<span class="stat-unit">°C</span>`;
             document.getElementById('humidity').innerHTML = `${humidity}<span class="stat-unit">%</span>`;
             document.getElementById('pigBodyTemp').innerHTML = `${pigBodyTemp}<span class="stat-unit">°C</span>`;
 
-            // Save to Firebase
             const timestamp = Date.now();
             const sensorData = {
                 temperature: parseFloat(temperature),
@@ -1688,53 +1675,123 @@ canvas, .chart-canvas {
             if (temperature > 35) {
                 addNotification('High Temperature Alert', `Temperature is ${temperature}°C - Above normal range`, 'warning');
             }
+			
             if (humidity > 85) {
                 addNotification('High Humidity Alert', `Humidity is ${humidity}% - Risk of disease`, 'warning');
             }
+			
 			if (pigBodyTemp > 40) {
                 addNotification('Pig Health Alert', `Pig body temperature is ${pigBodyTemp}°C - Possible fever`, 'error');
             }
-            
         }
 
-		//-----------------Camera Functions----------------------
-		
-		//--------------------------------------------------
-		//camera var
-		//--------------------------------------------------
-		
+		// Camera Functions
 		const CAMERA_URLS = {
-		  behavior: "http://cam_stream:81/stream" // ESP32-CAM
+		  behavior: "http://cam_stream:81/stream"
 		};
-		const THERMAL_WS_URL = "ws://heatmap/ws"; // thermal node
-		
+
+		const THERMAL_WS_URL = "ws://heatmap/thermal";
+		const CONTROL_WS_URL = "ws://heatmap/control";
+		let controlConnecting = false;
+
 		const camImg = document.getElementById('camImg');
 		const thermalContainer = document.getElementById('thermalContainer');
 		const camPlaceholder = document.getElementById('camPlaceholder');
-
+		
 		const canvas = document.getElementById('canvas');
 		const ctx = canvas.getContext('2d');
 
-		//const lastMinEl = document.getElementById('lastMinEl');
-		//const lastMaxEl = document.getElementById('lastMaxEl');
-		
-		const fpsEl = document.getElementById('fpsEl');
-
-		// Offscreen buffer for native resolution
 		const cols = 32, rows = 24;
 		const smallCanvas = document.createElement('canvas');
 		smallCanvas.width = cols;
 		smallCanvas.height = rows;
 		const smallCtx = smallCanvas.getContext('2d');
 
-		let ws = null;
-		let processing = false;
-		let framesSinceLast = 0;
-		let lastFpsUpdate = performance.now();
+		let thermalWs = null;
+		let controlWs = null;
 
-		// --------------------------------------------------
-		// Switch between Behavior and Thermal
-		// --------------------------------------------------
+		let controlConnected = false;
+		let controlQueue = []; 
+		let controlReconnectDelay = 1000;
+		const CONTROL_MAX_RECONNECT_DELAY = 30000;
+
+		let processing = false;
+
+		function connectControlWS(url = CONTROL_WS_URL) {
+		  if (controlWs && (controlWs.readyState === WebSocket.OPEN || controlWs.readyState === WebSocket.CONNECTING)) {
+			return;
+		  }
+		  controlConnecting = true;
+
+		  try {
+			controlWs = new WebSocket(url);
+			controlWs.onopen = () => {
+			  console.log('[ControlWS] connected');
+			  controlConnected = true;
+			  controlConnecting = false;
+			  controlReconnectDelay = 1000;
+			  while (controlQueue.length) {
+				const m = controlQueue.shift();
+				_sendControlNow(m);
+			  }
+			};
+
+			controlWs.onmessage = (evt) => { console.log('[ControlWS] recv:', evt.data); };
+
+			controlWs.onclose = (evt) => {
+			  console.warn('[ControlWS] closed', 'code=', evt.code, 'reason=', evt.reason);
+			  controlConnected = false;
+			  controlWs = null;
+			  controlConnecting = false;
+			  setTimeout(() => {
+				controlReconnectDelay = Math.min(CONTROL_MAX_RECONNECT_DELAY, Math.floor(controlReconnectDelay * 1.5));
+				connectControlWS(url);
+			  }, controlReconnectDelay);
+			};
+
+			controlWs.onerror = (err) => {
+			  console.error('[ControlWS] error', err);
+			};
+
+		  } catch (err) {
+			console.error('[ControlWS] connect exception', err);
+			controlConnected = false;
+			controlConnecting = false;
+		  }
+		}
+
+		function _sendControlNow(out) {
+		  if (!controlWs || controlWs.readyState !== WebSocket.OPEN) {
+			controlQueue.push(out);
+			return;
+		  }
+		  try {
+			controlWs.send(out);
+			console.log('[ControlWS] sent', out);
+		  } catch (e) {
+			console.error('[ControlWS] send failed, queueing', e);
+			controlQueue.push(out);
+		  }
+		}
+
+		function sendControl(payload) {
+		  const out = (typeof payload === 'object') ? JSON.stringify(payload) : String(payload);
+
+		  if (controlWs && controlWs.readyState === WebSocket.OPEN && controlConnected) {
+			_sendControlNow(out);
+			return;
+		  }
+
+		  controlQueue.push(out);
+		  console.warn('[ControlWS] not connected — queued command:', out);
+
+		  if (!controlWs || controlWs.readyState === WebSocket.CLOSED) {
+			if (!controlConnecting) connectControlWS();
+		  }
+		}
+
+		connectControlWS();
+
 		function switchCamera(type) {
 		  if (type === 'behavior') {
 			stopThermalFeed();
@@ -1750,31 +1807,26 @@ canvas, .chart-canvas {
 		  }
 		}
 
-		// --------------------------------------------------
-		// WebSocket Thermal Feed
-		// --------------------------------------------------
 		function startThermalFeed() {
-		  if (ws && ws.readyState === WebSocket.OPEN) return;
-		  ws = new WebSocket(THERMAL_WS_URL);
-		  ws.binaryType = "arraybuffer";
+		  if (thermalWs && thermalWs.readyState === WebSocket.OPEN) return;
+		  thermalWs = new WebSocket(THERMAL_WS_URL);
+		  thermalWs.binaryType = "arraybuffer";
 
-		  ws.onopen = () => console.log("[WS] Thermal connected");
-		  ws.onclose = () => {
-			console.warn("[WS] Disconnected, retrying...");
+		  thermalWs.onopen = () => console.log("[ThermalWS] Thermal connected");
+		  thermalWs.onclose = () => {
+			console.warn("[ThermalWS] Disconnected, retrying...");
 			setTimeout(startThermalFeed, 2000);
 		  };
 
-		  ws.onmessage = async (e) => {
-			// Binary frame (float32 array)
+		  thermalWs.onmessage = async (e) => {
 			if (e.data instanceof ArrayBuffer) {
 			  const floats = new Float32Array(e.data);
 			  if (floats.length === cols * rows) {
-				drawFloatFrame(floats); // this already calls updateSensorData(pig_temp, 0, ambient_temp)
+				drawFloatFrame(floats);
 			  }
 			  return;
 			}
 
-			// Text or Blob (JSON) messages (e.g. ambient temperature updates or humidity)
 			try {
 			  let text;
 			  if (typeof e.data === "string") {
@@ -1787,25 +1839,17 @@ canvas, .chart-canvas {
 
 			  const obj = JSON.parse(text);
 
-			  // -- support multiple message shapes --
 			  if (obj && obj.type === "ta" && obj.ta !== undefined) {
 				const taVal = Number(obj.ta);
 				if (Number.isFinite(taVal)) {
 				  ambient_temp = taVal;
-				  //console.log("[WS] Ambient Ta:", ambient_temp);
-				  // Optionally refresh UI immediately:
-				  // updateSensorData(pig_temp, 0, ambient_temp);
 				}
 			  } else if (obj && obj.type === "dht" && obj.humidity !== undefined) {
 				const humVal = Number(obj.humidity);
 				if (Number.isFinite(humVal)) {
 				  ambient_humidity = humVal;
-				  //console.log("[WS] Ambient humidity:", ambient_humidity);
-
-				  // updateSensorData(pig_temp, ambient_humidity, ambient_temp);
 				}
 			  } else if (obj && obj.type === "meta") {
-				// combined message from device: { type: "meta", ta: ..., humidity: ... }
 				if (obj.ta !== undefined) {
 				  const taVal = Number(obj.ta);
 				  if (Number.isFinite(taVal)) ambient_temp = taVal;
@@ -1814,35 +1858,26 @@ canvas, .chart-canvas {
 				  const humVal = Number(obj.humidity);
 				  if (Number.isFinite(humVal)) ambient_humidity = humVal;
 				}
-				//console.log("[WS] Meta:", { ta: ambient_temp, humidity: ambient_humidity });
-
-	
 			  }
-			  // ignore other message types
 			} catch (err) {
-			  console.warn("[WS] Failed to parse text message:", err);
+			  console.warn("[ThermalWS] Failed to parse text message:", err);
 			}
 		  };
 		}
 
-
 		function stopThermalFeed() {
-		  if (ws) {
-			ws.close();
-			ws = null;
+		  if (thermalWs) {
+			try { thermalWs.close(); } catch (e) {}
+			thermalWs = null;
 		  }
 		}
 
-		// --------------------------------------------------
-		// Turbo-based Heatmap Rendering
-		// --------------------------------------------------
 		function lerp(a, b, t) { return a + (b - a) * t; }
 
 		function getColorForValue(val, vminLocal, vmaxLocal, cmap = 'turbo') {
 		  if (!isFinite(val)) return [0, 0, 0, 255];
 		  if (vminLocal === vmaxLocal) { vminLocal -= 0.5; vmaxLocal += 0.5; }
 		  const t = Math.max(0, Math.min(1, (val - vminLocal) / (vmaxLocal - vminLocal)));
-		  // turbo-like
 		  const stops = [
 			[0.0, [48, 18, 59]],
 			[0.25, [18, 102, 173]],
@@ -1877,12 +1912,9 @@ canvas, .chart-canvas {
 			  if (v > obsMax) obsMax = v;
 			}
 		  }
-		  /*
-		  lastMinEl.textContent = isFinite(obsMin) ? obsMin.toFixed(2) : '-';
-		  lastMaxEl.textContent = isFinite(obsMax) ? obsMax.toFixed(2) : '-';
-		  */
+
 		  pig_temp = isFinite(obsMax) ? obsMax.toFixed(2) : '-';
-		  
+
 		  const vmin = isFinite(obsMin) ? obsMin : 0;
 		  const vmax = isFinite(obsMax) ? obsMax : vmin + 1;
 
@@ -1905,84 +1937,97 @@ canvas, .chart-canvas {
 		  ctx.save();
 		  ctx.imageSmoothingEnabled = false;
 		  ctx.translate(canvas.width, 0);
-		  ctx.scale(-1, 1); // horizontal flip
+		  ctx.scale(-1, 1);
 		  ctx.drawImage(smallCanvas, 0, 0, canvas.width, canvas.height);
 		  ctx.restore();
 
-		  // FPS
-		  /*
-		  framesSinceLast++;
-		  const now = performance.now();
-		  if (now - lastFpsUpdate >= 500) {
-			fpsEl.textContent = ((framesSinceLast * 1000) / (now - lastFpsUpdate)).toFixed(1);
-			framesSinceLast = 0;
-			lastFpsUpdate = now;
-		  }
-		  */
-		  
-		  //updateSensorData(pig_temp, 0, ambient_temp);
 		  processing = false;
 		}
 
-		// --------------------------------------------------
-		// Default view
-		// --------------------------------------------------
-		document.addEventListener("DOMContentLoaded", () => switchCamera('behavior'));
+		document.addEventListener("DOMContentLoaded", () => {
+		  switchCamera('behavior');
+		});
 
-			
-		
-		
+		function toggleFeeder() {
+		  const isEnabled = document.getElementById('feederSwitch').checked;
+		  showNotification(`Automatic Feeder ${isEnabled ? 'Enabled' : 'Disabled'}`, 'success');
 
-        // Control Functions
-        function toggleFeeder() {
-            const isEnabled = document.getElementById('feederSwitch').checked;
-            showNotification(`Automatic Feeder ${isEnabled ? 'Enabled' : 'Disabled'}`, 'success');
-            
-            if (currentUser) {
-                database.ref(`controls/${currentUser.uid}/feeder`).set({
-                    enabled: isEnabled,
-                    lastUpdated: Date.now()
-                });
-            }
-        }
+		  if (currentUser) {
+			database.ref(`controls/${currentUser.uid}/feeder`).set({
+			  enabled: isEnabled,
+			  lastUpdated: Date.now()
+			});
+		  }
 
-        function toggleShower() {
-            const isEnabled = document.getElementById('showerSwitch').checked;
-            showNotification(`Water Shower ${isEnabled ? 'Enabled' : 'Disabled'}`, 'success');
-            
-            if (currentUser) {
-                database.ref(`controls/${currentUser.uid}/shower`).set({
-                    enabled: isEnabled,
-                    lastUpdated: Date.now()
-                });
-            }
-        }
+		  sendControl({
+			cmd: 'feeder',
+			state: isEnabled ? 'on' : 'off',
+			uid: currentUser ? currentUser.uid : undefined,
+			ts: Date.now()
+		  });
+		}
 
-        function manualFeed() {
-            showNotification('Manual feeding activated', 'success');
-            addNotification('Manual Feed', 'Manual feeding session started', 'info');
-            
-            if (currentUser) {
-                database.ref(`feedLogs/${currentUser.uid}/${Date.now()}`).set({
-                    type: 'manual',
-                    timestamp: Date.now(),
-                    amount: '2.5kg' // Simulated
-                });
-            }
-        }
+		function toggleShower() {
+		  const isEnabled = document.getElementById('showerSwitch').checked;
+		  showNotification(`Water Shower ${isEnabled ? 'Enabled' : 'Disabled'}`, 'success');
 
-        function manualShower() {
-            showNotification('Water shower activated', 'success');
-            addNotification('Manual Shower', 'Water shower session started', 'info');
-            
-            if (currentUser) {
-                database.ref(`showerLogs/${currentUser.uid}/${Date.now()}`).set({
-                    type: 'manual',
-                    timestamp: Date.now(),
-                    duration: '10 minutes' // Simulated
-                });
-            }
-        }
+		  if (currentUser) {
+			database.ref(`controls/${currentUser.uid}/shower`).set({
+			  enabled: isEnabled,
+			  lastUpdated: Date.now()
+			});
+		  }
+
+		  sendControl({
+			cmd: 'valve',
+			state: isEnabled ? 'on' : 'off',
+			target: 'shower',
+			uid: currentUser ? currentUser.uid : undefined,
+			ts: Date.now()
+		  });
+		}
+
+		function manualFeed() {
+		  showNotification('Manual feeding activated', 'success');
+		  addNotification('Manual Feed', 'Manual feeding session started', 'info');
+
+		  const simulatedAmount = 0.2;
+		  if (currentUser) {
+			database.ref(`feedLogs/${currentUser.uid}/${Date.now()}`).set({
+			  type: 'manual',
+			  timestamp: Date.now(),
+			  amount: `${simulatedAmount}kg`
+			});
+		  }
+
+		  sendControl({
+			cmd: 'feed',
+			amount: simulatedAmount,
+			uid: currentUser ? currentUser.uid : undefined,
+			ts: Date.now()
+		  });
+		}
+
+		function manualShower() {
+		  showNotification('Water shower activated', 'success');
+		  addNotification('Manual Shower', 'Water shower session started', 'info');
+
+		  const simulatedDurationMinutes = 10;
+		  if (currentUser) {
+			database.ref(`showerLogs/${currentUser.uid}/${Date.now()}`).set({
+			  type: 'manual',
+			  timestamp: Date.now(),
+			  duration: `${simulatedDurationMinutes} minutes`
+			});
+		  }
+
+		  sendControl({ cmd: 'valve', state: 'on', target: 'shower', uid: currentUser ? currentUser.uid : undefined, ts: Date.now() });
+
+		  setTimeout(() => {
+			sendControl({ cmd: 'valve', state: 'off', target: 'shower', uid: currentUser ? currentUser.uid : undefined, ts: Date.now() });
+			addNotification('Manual Shower', 'Water shower session ended', 'info');
+		  }, simulatedDurationMinutes * 60 * 1000);
+		}
 
         // Pig Management Functions
         document.getElementById('pigForm').addEventListener('submit', async (e) => {
@@ -2001,6 +2046,17 @@ canvas, .chart-canvas {
             };
 
             try {
+                // Check for duplicate pig by tag number
+                const duplicateCheck = await firestore.collection('pigs')
+                    .where('userId', '==', currentUser.uid)
+                    .where('tagNumber', '==', pigData.tagNumber)
+                    .get();
+
+                if (!duplicateCheck.empty) {
+                    showNotification('A pig with this tag number already exists!', 'error');
+                    return;
+                }
+
                 await firestore.collection('pigs').add(pigData);
                 document.getElementById('pigForm').reset();
                 loadPigs();
@@ -2039,6 +2095,9 @@ canvas, .chart-canvas {
                             ${pig.status !== 'sold' ? 
                                 `<button class="btn-sell" onclick="openSellModal('${doc.id}')">
                                     <i class="fas fa-dollar-sign"></i> Sell
+                                </button>
+                                <button class="btn-delete" onclick="openDeleteModal('${doc.id}')">
+                                    <i class="fas fa-trash"></i> Delete
                                 </button>` : 
                                 '<span style="color: var(--neutral-gray);">Sold</span>'
                             }
@@ -2062,6 +2121,29 @@ canvas, .chart-canvas {
             currentPigToSell = null;
             document.getElementById('sellPigModal').classList.remove('show');
             document.getElementById('sellPigForm').reset();
+        }
+
+        function openDeleteModal(pigId) {
+            currentPigToDelete = pigId;
+            document.getElementById('deletePigModal').classList.add('show');
+        }
+
+        function closeDeleteModal() {
+            currentPigToDelete = null;
+            document.getElementById('deletePigModal').classList.remove('show');
+        }
+
+        async function confirmDelete() {
+            if (!currentPigToDelete) return;
+
+            try {
+                await firestore.collection('pigs').doc(currentPigToDelete).delete();
+                closeDeleteModal();
+                loadPigs();
+                showNotification('Pig deleted successfully', 'success');
+            } catch (error) {
+                showNotification(`Delete failed: ${error.message}`, 'error');
+            }
         }
 
         document.getElementById('sellPigForm').addEventListener('submit', async (e) => {
@@ -2090,7 +2172,6 @@ canvas, .chart-canvas {
 
         // Charts and Statistics
         function initializeCharts() {
-            // Destroy existing charts before creating new ones
             destroyAllCharts();
 
             const tempCtx = document.getElementById('temperatureChart');
@@ -2117,7 +2198,6 @@ canvas, .chart-canvas {
                 }
             };
 
-            // Temperature Chart
             chartInstances.temperature = new Chart(tempCtx, {
                 type: 'line',
                 data: {
@@ -2133,7 +2213,6 @@ canvas, .chart-canvas {
                 options: chartOptions
             });
 
-            // Humidity Chart
             chartInstances.humidity = new Chart(humidityCtx, {
                 type: 'line',
                 data: {
@@ -2149,7 +2228,6 @@ canvas, .chart-canvas {
                 options: chartOptions
             });
 
-            // Pig Temperature Chart
             chartInstances.bodyTemp = new Chart(bodyTempCtx, {
                 type: 'line',
                 data: {
@@ -2172,7 +2250,6 @@ canvas, .chart-canvas {
             const filter = document.getElementById('dataFilter').value;
             const customDate = document.getElementById('customDate').value;
 
-            // Simulate chart data updates
             const now = new Date();
             const labels = [];
             const tempData = [];
@@ -2187,7 +2264,6 @@ canvas, .chart-canvas {
                 pigTempData.push(38 + Math.random() * 3);
             }
 
-            // Update charts
             chartInstances.temperature.data.labels = labels;
             chartInstances.temperature.data.datasets[0].data = tempData;
             chartInstances.temperature.update();
@@ -2222,7 +2298,6 @@ canvas, .chart-canvas {
             
             notificationsList.insertBefore(notificationEl, notificationsList.firstChild);
 
-            // Save to Firebase
             if (currentUser) {
                 firestore.collection('notifications').add({
                     title: title,
@@ -2262,7 +2337,6 @@ canvas, .chart-canvas {
 
         async function generatePDFReport(startDate, endDate) {
             try {
-                // Get pigs data
                 const pigsSnapshot = await firestore.collection('pigs')
                     .where('userId', '==', currentUser.uid)
                     .get();
@@ -2282,7 +2356,6 @@ canvas, .chart-canvas {
                     if (pig.status === 'sold') soldPigs++;
                 });
 
-                // Create PDF content
                 const reportContent = document.getElementById('reportContent');
                 reportContent.innerHTML = `
                     <div id="pdfContent" style="font-family: Arial, sans-serif; padding: 2rem;">
@@ -2365,7 +2438,6 @@ canvas, .chart-canvas {
                     </div>
                 `;
 
-                // Generate PDF
                 const { jsPDF } = window.jspdf;
                 const pdf = new jsPDF('p', 'mm', 'a4');
                 
@@ -2405,7 +2477,6 @@ canvas, .chart-canvas {
         function setupRealtimeListeners() {
             if (!currentUser) return;
 
-            // Listen for sensor data changes
             database.ref(`sensorData/${currentUser.uid}`).limitToLast(1).on('child_added', (snapshot) => {
                 const data = snapshot.val();
                 if (data) {
@@ -2415,7 +2486,6 @@ canvas, .chart-canvas {
                 }
             });
 
-            // Listen for pig changes
             firestore.collection('pigs')
                 .where('userId', '==', currentUser.uid)
                 .onSnapshot((snapshot) => {
@@ -2433,14 +2503,13 @@ canvas, .chart-canvas {
                 }
             }
 
-            // Set default dates for report
             const today = new Date();
             const weekAgo = new Date(today.getTime() - 7 * 24 * 60 * 60 * 1000);
             document.getElementById('reportStartDate').value = weekAgo.toISOString().split('T')[0];
             document.getElementById('reportEndDate').value = today.toISOString().split('T')[0];
         });
 
-        // Auth State Observer
+        // Auth State Observer - Keeps user logged in after refresh
         auth.onAuthStateChanged((user) => {
             if (user) {
                 currentUser = user;
@@ -2470,9 +2539,13 @@ canvas, .chart-canvas {
 
         // Close modals when clicking outside
         window.onclick = function(event) {
-            const modal = document.getElementById('sellPigModal');
-            if (event.target === modal) {
+            const sellModal = document.getElementById('sellPigModal');
+            const deleteModal = document.getElementById('deletePigModal');
+            if (event.target === sellModal) {
                 closeSellModal();
+            }
+            if (event.target === deleteModal) {
+                closeDeleteModal();
             }
         };
 
@@ -2485,7 +2558,7 @@ canvas, .chart-canvas {
 
         // Simulate periodic health checks
         setInterval(() => {
-            if (currentUser && Math.random() < 0.1) { // 10% chance every interval
+            if (currentUser && Math.random() < 0.1) {
                 const alerts = [
                     { title: 'Feed Level Low', message: 'Automatic feeder needs refill', type: 'warning' },
                     { title: 'Normal Health Check', message: 'All pigs showing normal behavior', type: 'success' },
@@ -2494,38 +2567,35 @@ canvas, .chart-canvas {
                 const randomAlert = alerts[Math.floor(Math.random() * alerts.length)];
                 addNotification(randomAlert.title, randomAlert.message, randomAlert.type);
             }
-        }, 30000); // Every 30 seconds
+        }, 30000);
 
-            // Mobile Sidebar Toggle
-    const sidebar = document.getElementById('sidebar');
-    const mainContent = document.getElementById('mainContent');
-    const menuBtn = document.querySelector('.mobile-menu-btn');
+        // Mobile Sidebar Toggle
+        const sidebar = document.getElementById('sidebar');
+        const mainContent = document.getElementById('mainContent');
+        const menuBtn = document.querySelector('.mobile-menu-btn');
 
-    // Toggle sidebar when hamburger button is clicked
-    menuBtn.addEventListener('click', () => {
-        sidebar.classList.toggle('show');
-        mainContent.classList.toggle('full-width');
-    });
+        menuBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('show');
+            mainContent.classList.toggle('full-width');
+        });
 
-    // Auto-hide sidebar when a nav link is clicked (for mobile)
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', () => {
-            if (window.innerWidth <= 768) {
-                sidebar.classList.remove('show');
-                mainContent.classList.remove('full-width');
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    sidebar.classList.remove('show');
+                    mainContent.classList.remove('full-width');
+                }
+            });
+        });
+
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768 && sidebar.classList.contains('show')) {
+                if (!sidebar.contains(e.target) && !menuBtn.contains(e.target)) {
+                    sidebar.classList.remove('show');
+                    mainContent.classList.remove('full-width');
+                }
             }
         });
-    });
-
-    // Optional: hide sidebar when clicking outside (mobile)
-    document.addEventListener('click', (e) => {
-        if (window.innerWidth <= 768 && sidebar.classList.contains('show')) {
-            if (!sidebar.contains(e.target) && !menuBtn.contains(e.target)) {
-                sidebar.classList.remove('show');
-                mainContent.classList.remove('full-width');
-            }
-        }
-    });
     </script>
 </body>
 </html>
