@@ -1910,6 +1910,7 @@
                 </div>
             </div>
 
+
             <!-- Pig Management Page -->
             <div id="pigsPage" class="page-content">
                 <div class="page-header">
@@ -1967,7 +1968,8 @@
                                     placeholder="Enter length" required>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary"><i class="fas fa-check"></i> Register Hog</button>
+                        <button type="submit" class="btn btn-primary"><i class="fas fa-check"></i> Register
+                            Hog</button>
                     </form>
                 </div>
 
@@ -2011,7 +2013,8 @@
                 <div class="chart-container">
                     <div class="chart-header">
                         <h3><i class="fas fa-balance-scale"
-                                style="margin-right: 0.5rem; color: var(--primary-pink);"></i> Select Pigs to Compare
+                                style="margin-right: 0.5rem; color: var(--primary-pink);"></i> Select Pigs to
+                            Compare
                         </h3>
                     </div>
                     <div
@@ -2064,7 +2067,8 @@
                     <div id="comparisonChartsGrid"
                         style="display: none; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
                         <div>
-                            <h4 style="color: var(--dark-pink); margin-bottom: 1rem; text-align: center;">Age Comparison
+                            <h4 style="color: var(--dark-pink); margin-bottom: 1rem; text-align: center;">Age
+                                Comparison
                             </h4>
                             <canvas id="ageComparisonChart" style="max-height: 300px;"></canvas>
                         </div>
@@ -2112,7 +2116,8 @@
                 <div class="chart-container">
                     <div class="chart-header">
                         <h3><i class="fas fa-temperature-high"
-                                style="margin-right: 0.5rem; color: var(--primary-pink);"></i> Temperature Monitoring
+                                style="margin-right: 0.5rem; color: var(--primary-pink);"></i> Temperature
+                            Monitoring
                         </h3>
                     </div>
                     <canvas id="temperatureChart" class="chart-canvas"></canvas>
@@ -2195,7 +2200,8 @@
                     <div class="modal-content" style="max-width: 600px;">
                         <div class="modal-header">
                             <h3 class="modal-title"><i class="fas fa-filter"
-                                    style="margin-right: 0.5rem; color: var(--primary-pink);"></i> Advanced Report
+                                    style="margin-right: 0.5rem; color: var(--primary-pink);"></i> Advanced
+                                Report
                                 Filters</h3>
                             <button class="close-btn" onclick="closeReportFilters()">&times;</button>
                         </div>
@@ -2291,7 +2297,8 @@
                 <!-- Report Preview -->
                 <div id="reportPreview" class="chart-container">
                     <div class="chart-header">
-                        <h3><i class="fas fa-eye" style="margin-right: 0.5rem; color: var(--primary-pink);"></i> Report
+                        <h3><i class="fas fa-eye" style="margin-right: 0.5rem; color: var(--primary-pink);"></i>
+                            Report
                             Preview</h3>
                     </div>
                     <div id="reportContent">
@@ -2387,7 +2394,8 @@
                                 <i class="fas fa-eye"></i> Behavior Camera
                             </div>
                             <div id="currentBehaviorURL"
-                                style="word-break: break-all; color: var(--dark-gray); font-size: 0.9rem;"></div>
+                                style="word-break: break-all; color: var(--dark-gray); font-size: 0.9rem;">
+                            </div>
                         </div>
 
                         <div
@@ -2397,7 +2405,8 @@
                                 <i class="fas fa-thermometer-half"></i> Thermal Camera
                             </div>
                             <div id="currentThermalURL"
-                                style="word-break: break-all; color: var(--dark-gray); font-size: 0.9rem;"></div>
+                                style="word-break: break-all; color: var(--dark-gray); font-size: 0.9rem;">
+                            </div>
                         </div>
 
                         <div
@@ -2407,7 +2416,8 @@
                                 <i class="fas fa-sliders-h"></i> Control WebSocket
                             </div>
                             <div id="currentControlURL"
-                                style="word-break: break-all; color: var(--dark-gray); font-size: 0.9rem;"></div>
+                                style="word-break: break-all; color: var(--dark-gray); font-size: 0.9rem;">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -2486,7 +2496,8 @@
                         <p
                             style="font-size: 0.9rem; color: var(--neutral-gray); background: rgba(244, 67, 54, 0.08); padding: 0.8rem; border-radius: 8px; border-left: 3px solid var(--error-red);">
                             <i class="fas fa-exclamation-circle" style="color: var(--error-red);"></i>
-                            <strong>Warning:</strong> This will disconnect all camera feeds and reconnect with default
+                            <strong>Warning:</strong> This will disconnect all camera feeds and reconnect with
+                            default
                             URLs.
                         </p>
                     </div>
@@ -2682,32 +2693,38 @@
             });
         }
 
-        // Login Form Handler
         document.getElementById('loginForm').addEventListener('submit', async (e) => {
             e.preventDefault();
+
             const email = document.getElementById('loginEmail').value;
             const password = document.getElementById('loginPassword').value;
             const rememberMe = document.getElementById('rememberMe').checked;
 
             try {
+                // Try only the login
                 const userCredential = await auth.signInWithEmailAndPassword(email, password);
                 currentUser = userCredential.user;
 
-                if (rememberMe) {
-                    localStorage.setItem('rememberMe', 'true');
-                    localStorage.setItem('userEmail', email);
-                } else {
-                    localStorage.removeItem('rememberMe');
-                    localStorage.removeItem('userEmail');
-                }
-
-                showMainApp();
-                startDataSimulation();
-                showNotification('Welcome back to SwineCare!', 'success');
             } catch (error) {
-                showNotification(`Incorrect Email/Password`, 'error');
+                // Only trigger when login fails
+                showNotification('Incorrect Email/Password', 'error');
+                return; // stop execution
             }
+
+            // Only run this if login was successful
+            if (rememberMe) {
+                localStorage.setItem('rememberMe', 'true');
+                localStorage.setItem('userEmail', email);
+            } else {
+                localStorage.removeItem('rememberMe');
+                localStorage.removeItem('userEmail');
+            }
+
+            showMainApp();
+            startDataSimulation();
+            showNotification('Welcome back to SwineCare!', 'success');
         });
+
 
         // Register Form Handler
         document.getElementById('registerForm').addEventListener('submit', async (e) => {
@@ -2806,6 +2823,11 @@
             document.getElementById('pageTitle').textContent = titles[pageId];
         }
 
+        // Store last valid readings
+        let lastPigTemp = 0;
+        let lastHumidity = 0;
+        let lastAmbientTemp = 0;
+
         // IoT Data Simulation
         function startDataSimulation() {
             simulationInterval = setInterval(() => {
@@ -2825,28 +2847,43 @@
             }
         }
 
-        function updateSensorData(pig_temp = 0, H = 0, ambient_temp = 0) {
+        function updateSensorData(pig_temp, H, ambient_temp) {
             if (!currentUser) return;
 
-            const temperature = ambient_temp;
-            const humidity = H;
-            const pigBodyTemp = pig_temp;
+            // Keep last valid readings — prevent null / undefined
+            if (pig_temp !== null && pig_temp !== undefined && pig_temp !== "") {
+                lastPigTemp = parseFloat(pig_temp);
+            }
+            if (H !== null && H !== undefined && H !== "") {
+                lastHumidity = parseFloat(H);
+            }
+            if (ambient_temp !== null && ambient_temp !== undefined && ambient_temp !== "") {
+                lastAmbientTemp = parseFloat(ambient_temp);
+            }
 
-            document.getElementById('temperature').innerHTML = `${temperature}<span class="stat-unit">°C</span>`;
-            document.getElementById('humidity').innerHTML = `${humidity}<span class="stat-unit">%</span>`;
-            document.getElementById('pigBodyTemp').innerHTML = `${pigBodyTemp}<span class="stat-unit">°C</span>`;
+            // Display last valid values
+            document.getElementById('temperature').innerHTML =
+                `${lastAmbientTemp}<span class="stat-unit">°C</span>`;
 
+            document.getElementById('humidity').innerHTML =
+                `${lastHumidity}<span class="stat-unit">%</span>`;
+
+            document.getElementById('pigBodyTemp').innerHTML =
+                `${lastPigTemp}<span class="stat-unit">°C</span>`;
+
+            // Save to Firebase
             const timestamp = Date.now();
             const sensorData = {
-                temperature: parseFloat(temperature),
-                humidity: parseFloat(humidity),
-                pigBodyTemp: parseFloat(pigBodyTemp),
+                temperature: lastAmbientTemp,
+                humidity: lastHumidity,
+                pigBodyTemp: lastPigTemp,
                 timestamp: timestamp,
                 userId: currentUser.uid
             };
 
             database.ref(`sensorData/${currentUser.uid}/${timestamp}`).set(sensorData);
         }
+
 
         function checkHealthAlerts() {
             const temperature = parseFloat(document.getElementById('temperature').textContent);
