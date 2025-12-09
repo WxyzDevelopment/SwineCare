@@ -6713,47 +6713,55 @@
         }
 
         // Mobile Sidebar Toggle with Backdrop
-        const sidebar = document.getElementById('sidebar');
-        const mainContent = document.getElementById('mainContent');
-        const menuBtn = document.querySelector('.mobile-menu-btn');
-        const backdrop = document.getElementById('sidebarBackdrop');
+const sidebar = document.getElementById('sidebar');
+const mainContent = document.getElementById('mainContent');
+const menuBtn = document.querySelector('.mobile-menu-btn');
+const backdrop = document.getElementById('sidebarBackdrop');
 
-        if (menuBtn) {
-            menuBtn.addEventListener('click', () => {
-                sidebar.classList.toggle('show');
-                if (backdrop) backdrop.classList.toggle('show');
-                document.body.classList.toggle('sidebar-open');
-            });
+if (menuBtn) {
+    menuBtn.addEventListener('click', () => {
+        sidebar.classList.toggle('show');
+        if (backdrop) backdrop.classList.toggle('show');
+        document.body.classList.toggle('sidebar-open');
+    });
+}
+
+document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+        if (window.innerWidth <= 768) {
+            sidebar.classList.remove('show');
+            if (backdrop) backdrop.classList.remove('show');
+            document.body.classList.remove('sidebar-open');
         }
+    });
+});
 
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                if (window.innerWidth <= 768) {
-                    sidebar.classList.remove('show');
-                    if (backdrop) backdrop.classList.remove('show');
-                    document.body.classList.remove('sidebar-open');
-                }
-            });
-        });
+// Close sidebar when clicking backdrop
+if (backdrop) {
+    backdrop.addEventListener('click', () => {
+        sidebar.classList.remove('show');
+        backdrop.classList.remove('show');
+        document.body.classList.remove('sidebar-open');
+    });
+}
 
-        // Close sidebar when clicking backdrop
-        if (backdrop) {
-            backdrop.addEventListener('click', () => {
-                sidebar.classList.remove('show');
-                backdrop.classList.remove('show');
-                document.body.classList.remove('sidebar-open');
-            });
+document.addEventListener('click', (e) => {
+    if (window.innerWidth <= 768 && sidebar.classList.contains('show')) {
+        if (!sidebar.contains(e.target) && !menuBtn.contains(e.target)) {
+            sidebar.classList.remove('show');
+            if (backdrop) backdrop.classList.remove('show');
+            document.body.classList.remove('sidebar-open');
         }
+    }
+});
 
-        document.addEventListener('click', (e) => {
-            if (window.innerWidth <= 768 && sidebar.classList.contains('show')) {
-                if (!sidebar.contains(e.target) && !menuBtn.contains(e.target)) {
-                    sidebar.classList.remove('show');
-                    if (backdrop) backdrop.classList.remove('show');
-                    document.body.classList.remove('sidebar-open');
-                }
-            }
-        });
+// ✅ Add missing function for mobile-menu-btn onclick
+function toggleSidebar() {
+    sidebar.classList.toggle('show');
+    if (backdrop) backdrop.classList.toggle('show');
+    document.body.classList.toggle('sidebar-open');
+}
+
     </script>
 </body>
 
